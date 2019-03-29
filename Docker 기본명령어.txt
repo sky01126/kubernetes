@@ -1,0 +1,106 @@
+- Config server run
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8888 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs" -p 8888:8888 -v /Volumes/Development/data/config-server/logs:/home/logs -i -t -d --name config-server sky01126/spring-cloud-config-server:1.0.0.RELEASE
+
+
+- Eureka server run
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8761 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888" -p 8761:8761 -v /Volumes/Development/data/eureka-server/logs:/home/logs -i -t -d --name eureka-server sky01126/spring-cloud-eureka-server:1.0.0.RELEASE
+
+
+- Zuul server run
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8080 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888" -p 8080:8080 -v /Volumes/Development/data/zuul-server/logs:/home/logs -i -t -d --name zuul-server sky01126/spring-cloud-zuul-server:1.0.0.RELEASE
+
+
+- Example server run
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18080 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18080:18080 -v /Volumes/Development/data/example-server01/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
+
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18081 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18081:18081 -v /Volumes/Development/data/example-server01/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
+
+
+
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18090 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18090:18090 -v /Volumes/Development/data/example-server02/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp02:1.0.0.RELEASE
+
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18091 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18091:18091 -v /Volumes/Development/data/example-server02/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp02:1.0.0.RELEASE
+
+
+- 이미지 생성
+  docker build --tag kthcorp/centos:7 /Volumes/Development/Projects/Docker/centos/7/
+
+  docker build --tag kthcorp/openssl:1.0.2p /Volumes/Development/Projects/Docker/openssl/1.0.2p/
+
+  docker build --tag kthcorp/apr:1.6.5 /Volumes/Development/Projects/Docker/apr/1.6.5/
+
+  docker build --tag kthcorp/openjdk:11.0.1 /Volumes/Development/Projects/Docker/openjdk/11/
+
+  docker build --tag kthcorp/tomcat:8.5.34 /Volumes/Development/Projects/Docker/tomcat/8.5.34/
+
+  docker run -i -t kthcorp/centos:7         /bin/bash
+  docker run -i -t kthcorp/openssl:1.0.2p   /bin/bash
+  docker run -i -t kthcorp/apr:1.6.5        /bin/bash
+  docker run -i -t kthcorp/openjdk:11.0.1   /bin/bash
+  docker run -i -t kthcorp/tomcat:8.5.34    /bin/bash
+
+
+  docker run -i -t jenkins/jenkins:lts /bin/bash
+
+
+- 콘테이너 생성
+  docker run -i -t -d --name tomcat01 kthcorp/tomcat:8.5.34 /bin/bash
+  docker run -i -t -d --name tomcat01 kthcorp/tomcat:8.5.34
+
+  docker run -i -t -d -p 18080:8080 -p 18009:8009 --name tomcat01 kthcorp/tomcat:8.5.34
+
+  docker run -i -t -d               \
+             -p 18080:8080          \
+             -p 18009:8009          \
+             -v /Volumes/Development/data/tomcat01/logs:/usr/share/tomcat/logs \
+             --name tomcat01        \
+             kthcorp/tomcat:8.5.34
+
+
+  docker run -i -t -d               \
+             -p 18080:8080          \
+             -p 50000:50000         \
+             jenkins/jenkins:lts
+
+
+- Docker HUB에 PUSH
+  docker login
+
+  docker push sky01126/spring-cloud-config-server:1.0.0.RELEASE
+  docker push sky01126/spring-cloud-eureka-server:1.0.0.RELEASE
+  docker push sky01126/spring-cloud-zuul-server:1.0.0.RELEASE
+
+  docker push sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
+  docker push sky01126/spring-cloud-msa-webapp02:1.0.0.RELEASE
+
+- 접속하지 않고 실행
+  docker exec tomcat01 /usr/local/tomcat/bin/tomcat.sh start
+
+- 접속
+  docker exec -it tomcat01 /bin/bash
+
+- 로그 확인
+  docker logs ${CONTAINER_ID}
+
+- 로그 확인 : tail옵션으로 마지막 10줄만 출력
+  docker logs --tail 10 ${CONTAINER_ID}
+
+- 로그 확인 : 실시간으로 로그가 생성되는 걸 확인
+  docker logs -f ${CONTAINER_ID}
+
+
+
+- 컨테이너  삭제
+  docker rm -f $(docker ps -a -q)
+
+- 이미지 삭제
+  docker rmi -f $(docker images -q)
+
+
+
+
+docker run -i -t -d kthcorp/tomcat:8.5.34
+
+
+docker run -i -t -d jenkins/jenkins:lts && docker exec -it test /bin/bash
+
