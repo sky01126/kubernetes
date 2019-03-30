@@ -49,4 +49,4 @@ spec:
         - name: log-path
           mountPath: /home/logs
       nodeSelector:
-        app: k8snode01
+        kubernetes.io/hostname: "k8snode01"
