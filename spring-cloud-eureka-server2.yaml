@@ -13,7 +13,7 @@ spec:
     app: spring-cloud-eureka-server2
   type: NodePort
   externalIPs:
-  - 192.168.237.162
+  - 192.168.126.162
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
