@@ -37,7 +37,7 @@ spec:
         image: sky01126/spring-cloud-eureka-server:1.0.0.RELEASE
         env:
         - name: JAVA_OPTS
-          value: "-Djava.security.egd=file:/dev/./urandom -Dserver.port=8761 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=prod -Dlog.home=/home/logs -Dconfig.server.host=spring-cloud-config-server.spring-cloud -Dconfig.server.port=8888 -Ddocker.host.server.address=192.168.237.162 -Deureka.peer.name=spring-cloud-eureka-server2 -Deureka.client.default.zone=spring-cloud-eureka-server1.spring-cloud"
+          value: "-Djava.security.egd=file:/dev/./urandom -Dserver.port=8761 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=prod -Dlog.home=/home/logs -Dconfig.server.host=spring-cloud-config-server.spring-cloud -Dconfig.server.port=8888 -Ddocker.host.server.address=192.168.126.162 -Deureka.peer.name=spring-cloud-eureka-server2 -Deureka.client.default.zone=spring-cloud-eureka-server1.spring-cloud"
         args: ["$(JAVA_OPTS)"]
         resources:
           requests:
