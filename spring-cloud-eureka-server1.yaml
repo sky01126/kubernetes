@@ -48,5 +48,6 @@ spec:
         volumeMounts:
         - name: log-path
           mountPath: /home/logs
-      nodeSelector:
-        kubernetes.io/hostname: "k8snode01"
+      #nodeSelector:
+      #  kubernetes.io/hostname: "k8snode01"
+      nodeName: k8snode02
