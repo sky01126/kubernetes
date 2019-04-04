@@ -7,13 +7,11 @@ metadata:
     app: spring-cloud-eureka-server1
 spec:
   ports:
-  - port: 8761
-    name: http
+  - name: http
+    port: 8761
+    targetPort: 8761
   selector:
     app: spring-cloud-eureka-server1
-  type: NodePort
-  externalIPs:
-  - 192.168.126.161
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -37,11 +35,12 @@ spec:
         image: sky01126/spring-cloud-eureka-server:1.0.0.RELEASE
         env:
         - name: JAVA_OPTS
-          value: "-Djava.security.egd=file:/dev/./urandom -Dserver.port=8761 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=prod -Dlog.home=/home/logs -Dconfig.server.host=spring-cloud-config-server.spring-cloud -Dconfig.server.port=8888 -Ddocker.host.server.address=192.168.126.161 -Deureka.peer.name=spring-cloud-eureka-server1 -Deureka.client.default.zone=spring-cloud-eureka-server2.spring-cloud"
+          value: "-Djava.security.egd=file:/dev/./urandom -Xms128m -Dserver.port=8761 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=prod -Dlogs.home=/home/logs -Dconfig.server.host=spring-cloud-config-server.spring-cloud -Dconfig.server.port=8888 -Deureka.peer.name=spring-cloud-eureka-server1 -Deureka.cluster.peer.url=spring-cloud-eureka-server2.spring-cloud"
         args: ["$(JAVA_OPTS)"]
         resources:
           requests:
-            cpu: "100m"
+            cpu: "200m"
+            memory: "256Mi"
         imagePullPolicy: Always # IfNotPresent
         ports:
         - containerPort: 8761
@@ -50,4 +49,4 @@ spec:
           mountPath: /home/logs
       #nodeSelector:
       #  kubernetes.io/hostname: "k8snode01"
-      nodeName: k8snode02
+      nodeName: k8snode01

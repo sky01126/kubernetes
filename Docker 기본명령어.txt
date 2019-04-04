@@ -1,3 +1,5 @@
+https://crystalcube.co.kr/206
+
 - Config server run
   docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8888 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs" -p 8888:8888 -v /Volumes/Development/data/config-server/logs:/home/logs -i -t -d --name config-server sky01126/spring-cloud-config-server:1.0.0.RELEASE
 
@@ -79,6 +81,9 @@
 - 접속
   docker exec -it tomcat01 /bin/bash
 
+- 상세 정보 확인
+  docker inspect ${CONTAINER_ID}
+
 - 로그 확인
   docker logs ${CONTAINER_ID}
 
@@ -87,7 +92,6 @@
 
 - 로그 확인 : 실시간으로 로그가 생성되는 걸 확인
   docker logs -f ${CONTAINER_ID}
-
 
 
 - 컨테이너  삭제

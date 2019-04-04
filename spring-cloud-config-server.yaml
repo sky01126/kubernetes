@@ -7,14 +7,11 @@ metadata:
     app: spring-cloud-config-server
 spec:
   ports:
-  - port: 8888
-    name: http
+  - name: http
+    port: 8888
+    targetPort: 8888
   selector:
     app: spring-cloud-config-server
-  type: NodePort
-  externalIPs:
-  - 172.16.109.151
-  - 172.16.109.152
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -38,14 +35,18 @@ spec:
         image: sky01126/spring-cloud-config-server:1.0.0.RELEASE
         env:
         - name: JAVA_OPTS
-          value: "-Djava.security.egd=file:/dev/./urandom -Dserver.port=8888 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=prod -Dlog.home=/home/logs"
+          value: "-Djava.security.egd=file:/dev/./urandom -Xms128m -Dserver.port=8888 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=prod -Dlogs.home=/home/logs"
         args: ["$(JAVA_OPTS)"]
         resources:
           requests:
-            cpu: "100m"
-        imagePullPolicy: IfNotPresent
+            cpu: "200m"
+            memory: "256Mi"
+        imagePullPolicy: Always # IfNotPresent
         ports:
         - containerPort: 8888
         volumeMounts:
         - name: log-path
           mountPath: /home/logs
+      #nodeSelector:
+      #  kubernetes.io/hostname: "k8smaster02"
+      nodeName: k8smaster02

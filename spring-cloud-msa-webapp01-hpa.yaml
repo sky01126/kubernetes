@@ -1,0 +1,17 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: spring-cloud-msa-webapp01-hpa
+  namespace: spring-cloud
+spec:
+  maxReplicas: 10
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: spring-cloud-msa-webapp01
+  metrics:
+      - type: Resource
+        resource:
+          name: cpu
+          targetAverageUtilization: 50
