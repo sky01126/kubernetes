@@ -4,14 +4,14 @@ metadata:
   name: spring-cloud-msa-webapp02-hpa
   namespace: spring-cloud
 spec:
-  maxReplicas: 10
   minReplicas: 2
+  maxReplicas: 4
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: spring-cloud-msa-webapp02
   metrics:
-      - type: Resource
-        resource:
-          name: cpu
-          targetAverageUtilization: 50
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 50
