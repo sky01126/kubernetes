@@ -13,8 +13,6 @@ spec:
   selector:
     app: spring-cloud-zuul-server
   type: NodePort
-  externalIPs:
-  - 172.16.109.151
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -30,9 +28,9 @@ spec:
         app: spring-cloud-zuul-server
     spec:
       volumes:
-      - name : log-path
+      - name : logs-path
         hostPath:
-          path: /data/spring-cloud/zuul/logs
+         path: /nasdata/ocdata/spring-cloud/zuul/logs
       containers:
       - name: spring-cloud-zuul-server
         image: sky01126/spring-cloud-zuul-server:1.0.0.RELEASE
@@ -48,5 +46,5 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
-        - name: log-path
+        - name: logs-path
           mountPath: /home/server/logs

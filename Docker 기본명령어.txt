@@ -1,21 +1,21 @@
 https://crystalcube.co.kr/206
 
 - Config server run
-  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8888 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs" -p 8888:8888 -v /Volumes/Development/data/config-server/logs:/home/logs -i -t -d --name config-server sky01126/spring-cloud-config-server:1.0.0.RELEASE
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8888 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=local" -p 8888:8888 -i -t -d --name config-server sky01126/spring-cloud-config-server:1.0.1.RELEASE
 
 
 - Eureka server run
-  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8761 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888" -p 8761:8761 -v /Volumes/Development/data/eureka-server/logs:/home/logs -i -t -d --name eureka-server sky01126/spring-cloud-eureka-server:1.0.0.RELEASE
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8761 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=local" -p 8761:8761 -i -t -d --name eureka-server sky01126/spring-cloud-eureka-server:1.0.1.RELEASE
 
 
 - Zuul server run
-  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8080 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888" -p 8080:8080 -v /Volumes/Development/data/zuul-server/logs:/home/logs -i -t -d --name zuul-server sky01126/spring-cloud-zuul-server:1.0.0.RELEASE
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=8080 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=local" -p 8080:8080 -i -t -d --name zuul-server sky01126/spring-cloud-zuul-server:1.0.1.RELEASE
 
 
 - Example server run
-  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18080 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18080:18080 -v /Volumes/Development/data/example-server01/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18081 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=local" -p 18081:18081 -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
 
-  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18081 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18081:18081 -v /Volumes/Development/data/example-server01/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18082 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=local" -p 18082:18082 -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
 
 
 
@@ -75,20 +75,31 @@ https://crystalcube.co.kr/206
   docker push sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
   docker push sky01126/spring-cloud-msa-webapp02:1.0.0.RELEASE
 
+
+- Image를 Tag 후 PUSH
+  docker tag zipkin-server:2.12.7 sky01126/zipkin-server:2.12.7
+  docker push sky01126/zipkin-server:2.12.7
+
+
 - 접속하지 않고 실행
   docker exec tomcat01 /usr/local/tomcat/bin/tomcat.sh start
+
 
 - 접속
   docker exec -it tomcat01 /bin/bash
 
+
 - 상세 정보 확인
   docker inspect ${CONTAINER_ID}
+
 
 - 로그 확인
   docker logs ${CONTAINER_ID}
 
+
 - 로그 확인 : tail옵션으로 마지막 10줄만 출력
   docker logs --tail 10 ${CONTAINER_ID}
+
 
 - 로그 확인 : 실시간으로 로그가 생성되는 걸 확인
   docker logs -f ${CONTAINER_ID}
@@ -97,14 +108,7 @@ https://crystalcube.co.kr/206
 - 컨테이너  삭제
   docker rm -f $(docker ps -a -q)
 
+
 - 이미지 삭제
   docker rmi -f $(docker images -q)
-
-
-
-
-docker run -i -t -d kthcorp/tomcat:8.5.34
-
-
-docker run -i -t -d jenkins/jenkins:lts && docker exec -it test /bin/bash
 

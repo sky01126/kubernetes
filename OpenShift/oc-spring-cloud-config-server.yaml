@@ -27,11 +27,9 @@ spec:
         app: spring-cloud-config-server
     spec:
       volumes:
-      - name : log-path
+      - name : logs-path
         hostPath:
-         path: /data/spring-cloud/config/logs
-        persistentVolumeClaim:
-          claimName: config-server-logs
+         path: /nasdata/ocdata/spring-cloud/config/logs
       containers:
       - name: spring-cloud-config-server
         image: sky01126/spring-cloud-config-server:1.0.0.RELEASE
@@ -47,8 +45,5 @@ spec:
         ports:
         - containerPort: 8888
         volumeMounts:
-        - name: log-path
+        - name: logs-path
           mountPath: /home/server/logs
-      #nodeSelector:
-      #  kubernetes.io/hostname: "k8smaster02"
-      #nodeName: k8smaster02

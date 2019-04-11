@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: config-server-log
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  nfs:
+    path: /data/spring-cloud/config/logs
+    server: 172.16.109.151
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: slow

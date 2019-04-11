@@ -4,7 +4,7 @@ metadata:
   name: spring-cloud-msa-webapp02
   namespace: spring-cloud
 spec:
-  replicas: 1
+  replicas: 2
   minReadySeconds: 20
   template:
     metadata:
@@ -12,9 +12,9 @@ spec:
         app: spring-cloud-msa-webapp02
     spec:
       volumes:
-      - name : log-path
+      - name : logs-path
         hostPath:
-          path: /data/spring-cloud/msa02/logs
+         path: /nasdata/ocdata/spring-cloud/msa02/logs
       containers:
       - name: spring-cloud-msa-webapp02
         image: sky01126/spring-cloud-msa-webapp02:1.0.0.RELEASE
@@ -30,5 +30,23 @@ spec:
         ports:
         - containerPort: 18082
         volumeMounts:
-        - name: log-path
+        - name: logs-path
           mountPath: /home/server/logs
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: spring-cloud-msa-webapp02-hpa
+  namespace: spring-cloud
+spec:
+  minReplicas: 2
+  maxReplicas: 6
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: spring-cloud-msa-webapp02
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 50

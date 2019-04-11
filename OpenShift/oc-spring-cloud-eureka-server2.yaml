@@ -27,9 +27,9 @@ spec:
         app: spring-cloud-eureka-server2
     spec:
       volumes:
-      - name : log-path
+      - name : logs-path
         hostPath:
-          path: /data/spring-cloud/eureka02/logs
+         path: /nasdata/ocdata/spring-cloud/eureka02/logs
       containers:
       - name: spring-cloud-eureka-server
         image: sky01126/spring-cloud-eureka-server:1.0.0.RELEASE
@@ -45,8 +45,5 @@ spec:
         ports:
         - containerPort: 8761
         volumeMounts:
-        - name: log-path
+        - name: logs-path
           mountPath: /home/server/logs
-      #nodeSelector:
-      #  kubernetes.io/hostname: "k8snode02"
-      #nodeName: k8snode02
