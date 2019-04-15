@@ -17,7 +17,7 @@ spec:
          path: /nasdata/ocdata/spring-cloud/msa02/logs
       containers:
       - name: spring-cloud-msa-webapp02
-        image: sky01126/spring-cloud-msa-webapp02:1.0.0.RELEASE
+        image: sky01126/spring-cloud-msa-webapp02:1.0.1.RELEASE
         env:
         - name: JAVA_OPTS
           value: "-Djava.security.egd=file:/dev/./urandom -Xms128m -Dserver.port=18082 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=prod -Dlogs.home=/home/server/logs -Dconfig.server.host=spring-cloud-config-server.spring-cloud -Dconfig.server.port=8888"

@@ -13,15 +13,15 @@ https://crystalcube.co.kr/206
 
 
 - Example server run
-  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18081 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=local" -p 18081:18081 -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18081 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=local" -p 18081:18081 -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.1.RELEASE
 
-  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18082 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=local" -p 18082:18082 -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18082 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=local" -p 18082:18082 -i -t -d sky01126/spring-cloud-msa-webapp01:1.0.1.RELEASE
 
 
 
-  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18090 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18090:18090 -v /Volumes/Development/data/example-server02/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp02:1.0.0.RELEASE
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18090 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18090:18090 -v /Volumes/Development/data/example-server02/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp02:1.0.1.RELEASE
 
-  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18091 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18091:18091 -v /Volumes/Development/data/example-server02/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp02:1.0.0.RELEASE
+  docker run -e JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dserver.port=18091 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=dev -Dlog.home=/home/logs -Dconfig.server.host=211.62.40.141 -Dconfig.server.port=8888 -Ddocker.host.server.address=211.62.40.141" -p 18091:18091 -v /Volumes/Development/data/example-server02/logs:/home/logs -i -t -d sky01126/spring-cloud-msa-webapp02:1.0.1.RELEASE
 
 
 - 이미지 생성
@@ -68,12 +68,12 @@ https://crystalcube.co.kr/206
 - Docker HUB에 PUSH
   docker login
 
-  docker push sky01126/spring-cloud-config-server:1.0.0.RELEASE
-  docker push sky01126/spring-cloud-eureka-server:1.0.0.RELEASE
-  docker push sky01126/spring-cloud-zuul-server:1.0.0.RELEASE
+  docker push sky01126/spring-cloud-config-server:1.0.1.RELEASE
+  docker push sky01126/spring-cloud-eureka-server:1.0.1.RELEASE
+  docker push sky01126/spring-cloud-zuul-server:1.0.1.RELEASE
 
-  docker push sky01126/spring-cloud-msa-webapp01:1.0.0.RELEASE
-  docker push sky01126/spring-cloud-msa-webapp02:1.0.0.RELEASE
+  docker push sky01126/spring-cloud-msa-webapp01:1.0.1.RELEASE
+  docker push sky01126/spring-cloud-msa-webapp02:1.0.1.RELEASE
 
 
 - Image를 Tag 후 PUSH
