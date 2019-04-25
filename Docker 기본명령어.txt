@@ -112,3 +112,36 @@ https://crystalcube.co.kr/206
 - 이미지 삭제
   docker rmi -f $(docker images -q)
 
+------------------------------------------------------------------------------------------------------------------------
+- KTH Repository 접속
+  Preferences > Daemon > Insecure registries에 "registry.kthcorp.com:5000" 등록
+
+  docker login registry.kthcorp.com:5000
+
+  20080133 / Djdudqn0))
+
+  - Nexus 사이트
+    http://registry.kthcorp.com:8081
+    계정은 사번이며, 패스워드는 Djdudqn0)) 입니다. Admin 권한이 부여 되어있습니다.
+
+  docker tag sky01126/openjdk:1.8.0_212 registry.kthcorp.com:5000/20080133/openjdk:1.8.0_212
+  docker push registry.kthcorp.com:5000/20080133/openjdk:1.8.0_212
+
+
+  docker tag sky01126/spring-cloud-zuul-server:1.0.1.RELEASE   registry.kthcorp.com:5000/20080133/spring-cloud-zuul-server:1.0.1.RELEASE
+  docker tag sky01126/spring-cloud-msa-webapp02:1.0.1.RELEASE  registry.kthcorp.com:5000/20080133/spring-cloud-msa-webapp02:1.0.1.RELEASE
+  docker tag sky01126/spring-cloud-msa-webapp01:1.0.1.RELEASE  registry.kthcorp.com:5000/20080133/spring-cloud-msa-webapp01:1.0.1.RELEASE
+  docker tag sky01126/spring-cloud-eureka-server:1.0.1.RELEASE registry.kthcorp.com:5000/20080133/spring-cloud-eureka-server:1.0.1.RELEASE
+  docker tag sky01126/spring-cloud-config-server:1.0.1.RELEASE registry.kthcorp.com:5000/20080133/spring-cloud-config-server:1.0.1.RELEASE
+
+
+  docker push registry.kthcorp.com:5000/20080133/spring-cloud-zuul-server:1.0.1.RELEASE
+  docker push registry.kthcorp.com:5000/20080133/spring-cloud-msa-webapp02:1.0.1.RELEASE
+  docker push registry.kthcorp.com:5000/20080133/spring-cloud-msa-webapp01:1.0.1.RELEASE
+  docker push registry.kthcorp.com:5000/20080133/spring-cloud-eureka-server:1.0.1.RELEASE
+  docker push registry.kthcorp.com:5000/20080133/spring-cloud-config-server:1.0.1.RELEASE
+
+
+
+
+
