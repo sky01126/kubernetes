@@ -26,16 +26,24 @@ spec:
     - istio-msa-gateway
   http:
     - match:
-        - uri:
-            exact: /api/v1
+      #- uri:
+      #    exact: /api/v1
+      - uri:
+          prefix: /api/v1
+      rewrite:
+        uri: /
       route:
         - destination:
             host: istio-msa-server-v1
             port:
               number: 8080
     - match:
-        - uri:
-            exact: /api/v2
+      #- uri:
+      #    exact: /api/v2
+      - uri:
+          prefix: /api/v2
+      rewrite:
+        uri: /
       route:
         - destination:
             host: istio-msa-server-v2
