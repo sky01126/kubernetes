@@ -1,0 +1,43 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: istio-msa-gateway
+  namespace: istio-msa-test
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-msa-virtual-service
+  namespace: istio-msa-test
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - istio-msa-gateway
+  http:
+    - match:
+        - uri:
+            exact: /api/v1
+      route:
+        - destination:
+            host: istio-msa-server-v1
+            port:
+              number: 8080
+    - match:
+        - uri:
+            exact: /api/v2
+      route:
+        - destination:
+            host: istio-msa-server-v2
+            port:
+              number: 8080

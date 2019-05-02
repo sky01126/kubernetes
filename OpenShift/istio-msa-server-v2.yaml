@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-msa-server-v2
+  namespace: istio-msa-test
+  labels:
+    app: istio-msa-server-v2
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: istio-msa-server-v2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: istio-msa-server-v2
+  namespace: istio-msa-test
+spec:
+  replicas: 1
+  minReadySeconds: 20
+  template:
+    metadata:
+      labels:
+        app: istio-msa-server-v2
+    spec:
+      volumes:
+      - name : log-path
+        hostPath:
+          path: /data/istio-msa-test/msa02/logs
+      containers:
+      - name: istio-msa-server-v2
+        image: sky01126/istio-msa-webapp02:1.0.0.RELEASE
+        env:
+        - name: JAVA_OPTS
+          value: "-Djava.security.egd=file:/dev/./urandom -Xms128m -Dserver.port=8080 -Dfile.encoding=UTF8 -Dclient.encoding.override=UTF-8 -Duser.timezone=GMT+09:00 -Dsun.java2d.opengl=false -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=prod -Dlogs.home=/home/server/logs"
+        args: ["$(JAVA_OPTS)"]
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+        imagePullPolicy: Always # IfNotPresent
+        ports:
+          - containerPort: 8080
+        volumeMounts:
+        - name: log-path
+          mountPath: /home/server/logs
